@@ -1,5 +1,6 @@
 package com.raphael.ReadingManagement.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,9 +29,11 @@ public class Reader {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "reader", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Library> libraries;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "reader", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Rating> ratings;
 }

@@ -1,5 +1,7 @@
 package com.raphael.ReadingManagement.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,15 +22,14 @@ public class Library {
     private Long libraryId;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "reader_id")
     private Reader reader;
-
-    @Column(name = "reader_id")
-    private Long readerId;
 
     @Column(name = "library_name")
     private String name;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "library", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Book> books;
 }

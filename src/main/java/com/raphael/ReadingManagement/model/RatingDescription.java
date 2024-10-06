@@ -1,5 +1,6 @@
 package com.raphael.ReadingManagement.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,11 +19,9 @@ public class RatingDescription {
     private Long ratingDescId;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "rating_id")
     private Rating rating;
-
-    @Column(name = "rating_id", nullable = false)
-    private Long ratingId;
 
     @Column(name = "chapter", nullable = false)
     private int chapter;

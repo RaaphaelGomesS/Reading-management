@@ -1,9 +1,9 @@
 package com.raphael.ReadingManagement.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.raphael.ReadingManagement.indicator.StatusIndicator;
 import jakarta.persistence.*;
 import lombok.*;
-
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -23,11 +23,9 @@ public class Book {
     private Long BookId;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "library_id")
     private Library library;
-
-    @Column(name = "library_id")
-    private Long LibraryId;
 
     @Column(name = "book_name")
     private String name;
@@ -49,7 +47,7 @@ public class Book {
     private StatusIndicator status;
 
     @CreationTimestamp
-    @Column(name = "start_date")
+    @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
     @Column(name = "end_date")
