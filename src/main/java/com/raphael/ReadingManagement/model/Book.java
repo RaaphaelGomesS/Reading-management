@@ -1,11 +1,10 @@
-package com.raphael.ReadingManagement.entities;
+package com.raphael.ReadingManagement.model;
 
 import com.raphael.ReadingManagement.indicator.StatusIndicator;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
@@ -19,8 +18,13 @@ import java.time.LocalDate;
 public class Book {
 
     @Id
-    @Column(name = "book_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id", nullable = false, updatable = false)
     private Long BookId;
+
+    @ManyToOne
+    @JoinColumn(name = "library_id")
+    private Library library;
 
     @Column(name = "library_id")
     private Long LibraryId;
@@ -28,21 +32,23 @@ public class Book {
     @Column(name = "book_name")
     private String name;
 
-    @Column(name = "author_name")
+    @Column(name = "author_name", nullable = false)
     private String author;
 
-    @Column(name = "publisher_name")
+    @Column(name = "publisher_name", nullable = false)
     private String publisher;
 
-    @Column(name = "total_pages")
+    @Column(name = "total_pages", nullable = false)
     private int totalPages;
 
     @Column(name = "pages_read")
     private int pagesRead;
 
-    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     private StatusIndicator status;
 
+    @CreationTimestamp
     @Column(name = "start_date")
     private LocalDate startDate;
 
