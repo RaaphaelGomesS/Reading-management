@@ -13,4 +13,7 @@ public interface LibraryRepository extends JpaRepository<Library, Long> {
 
     @Query("SELECT l FROM library l WHERE l.library_name = :name")
     Optional<Library> findByName(@Param("name") String name);
+
+    @Query("SELECT l FROM library l WHERE l.library_name = :name AND l.reader_id = :readerId")
+    Optional<Library> findByNameToAccount(@Param("name") String name, @Param("reader_id") Long readerId);
 }

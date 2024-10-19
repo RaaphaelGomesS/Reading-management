@@ -6,7 +6,6 @@ import com.raphael.ReadingManagement.model.Book;
 import com.raphael.ReadingManagement.model.Library;
 import com.raphael.ReadingManagement.model.Reader;
 import com.raphael.ReadingManagement.repository.LibraryRepository;
-import com.raphael.ReadingManagement.utils.ValidationUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ public class LibraryService {
 
     public Library createLibrary(String name, Reader reader) {
 
-        Optional<Library> libraryOptional = repository.findByName(name);
+        Optional<Library> libraryOptional = repository.findByNameToAccount(name, reader.getReaderId());
 
         if (libraryOptional.isPresent()) {
             throw new LibraryException("Já existe uma biblioteca com esse nome!", HttpStatus.BAD_REQUEST);
@@ -38,26 +37,15 @@ public class LibraryService {
 
     public void deleteLibrary(String name, Reader reader) {
 
-        Library library = getLibraryByName(name);
+        Library library = getLibrary(name, reader.getReaderId());
 
         repository.delete(library);
     }
 
-    public void addBook(String name, Book newBook) {
-
-        Library library = getLibraryByName(name);
-
-        if (library.getBooks().stream().anyMatch(libraryBook -> libraryBook.getName().equalsIgnoreCase(newBook.getName()))) {
-            throw new LibraryException("O livro já foi cadastrado nessa biblioteca", HttpStatus.BAD_REQUEST);
-        }
-
-        ValidationUtils.verifyHasPermission();
-    }
-
-    public Library getLibraryByName(String name) {
+    public Library getLibrary(String name, Long readerId) {
 
         if (name != null) {
-            return repository.findByName(name).orElseThrow(() ->
+            return repository.findByNameToAccount(name, readerId).orElseThrow(() ->
                     new LibraryException("Nenhuma biblioteca com esse nome foi encontrada!", HttpStatus.NOT_FOUND));
         }
 
