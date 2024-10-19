@@ -1,4 +1,4 @@
-package com.raphael.ReadingManagement;
+package com.raphael.ReadingManagement.builder;
 
 import com.raphael.ReadingManagement.dto.BookRequestDTO;
 import com.raphael.ReadingManagement.model.Book;

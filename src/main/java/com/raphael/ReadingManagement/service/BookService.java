@@ -1,15 +1,10 @@
 package com.raphael.ReadingManagement.service;
 
-import com.raphael.ReadingManagement.BookBuilder;
+import com.raphael.ReadingManagement.builder.BookBuilder;
 import com.raphael.ReadingManagement.dto.BookRequestDTO;
-import com.raphael.ReadingManagement.exception.LibraryException;
 import com.raphael.ReadingManagement.model.Book;
-import com.raphael.ReadingManagement.model.Library;
 import com.raphael.ReadingManagement.repository.BookRepository;
-import com.raphael.ReadingManagement.repository.LibraryRepository;
-import com.raphael.ReadingManagement.utils.ValidationUtils;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,6 +23,4 @@ public class BookService {
 
         bookRepository.save(book);
     }
-
-
 }
