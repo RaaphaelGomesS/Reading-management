@@ -10,5 +10,4 @@ public class ReadingManagementApplication {
 
         SpringApplication.run(ReadingManagementApplication.class, args);
     }
-
 }
