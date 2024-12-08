@@ -5,9 +5,8 @@ import com.raphael.Reading.Management.dto.ReaderDTO;
 import com.raphael.Reading.Management.dto.ReaderDTORequest;
 import com.raphael.Reading.Management.entity.Reader;
 import com.raphael.Reading.Management.service.AuthenticationService;
-import com.raphael.Reading.Management.service.TokenService;
+import com.raphael.Reading.Management.service.ReaderService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,20 +17,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/login")
 public class LoginController {
 
+    @Autowired
     private AuthenticationService service;
 
-    private TokenService tokenService;
-
+    @Autowired
     private AuthenticationManager manager;
+
+    @Autowired
+    private ReaderService readerService;
 
     @PostMapping("/create")
     public ResponseEntity<ReaderDTO> createAccount(@RequestBody @Valid ReaderDTORequest request) {
 
-        ReaderDTO readerDTO = service.createReader(request);
+        ReaderDTO readerDTO = readerService.createReader(request);
 
         return ResponseEntity.ok(readerDTO);
     }
@@ -43,7 +44,7 @@ public class LoginController {
 
         var auth = manager.authenticate(authDTO);
 
-        String token = tokenService.generateToken((Reader) auth.getPrincipal());
+        String token = service.generateToken((Reader) auth.getPrincipal());
 
         return ResponseEntity.ok(token);
     }

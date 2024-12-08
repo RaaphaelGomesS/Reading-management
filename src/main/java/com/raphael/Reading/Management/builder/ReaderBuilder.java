@@ -12,10 +12,7 @@ import java.util.ArrayList;
 @Component
 public class ReaderBuilder {
 
-    @Autowired
-    private static PasswordEncoder passwordEncoder;
-
-    public static Reader from(ReaderDTORequest request) {
+    public static Reader from(ReaderDTORequest request, PasswordEncoder passwordEncoder) {
         return Reader.builder()
                 .name(request.name())
                 .username(request.username())
