@@ -30,6 +30,6 @@ public class Annotation {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "desc", nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 }

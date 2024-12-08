@@ -6,19 +6,20 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.raphael.Reading.Management.entity.Reader;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-@Service
+@Component
 public class TokenService {
 
     @Value("${token.secret}")
     private String secret;
 
-    private final Instant EXPIRE = LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("0-3:00"));
+    private final Instant EXPIRE = LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
 
     public String generateToken(Reader reader) {
 

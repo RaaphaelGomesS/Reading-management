@@ -1,4 +1,4 @@
-package com.raphael.Reading.Management.config;
+package com.raphael.Reading.Management.component;
 
 import com.raphael.Reading.Management.repository.ReaderRepository;
 import com.raphael.Reading.Management.service.TokenService;

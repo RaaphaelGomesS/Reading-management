@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS annotation (
     annotation_id SERIAL,
     book_id INT NOT NULL,
     title varchar(150),
-    desc varchar(500) NOT NULL,
+    description varchar(500) NOT NULL,
     PRIMARY KEY(annotation_id),
     FOREIGN KEY(book_id) REFERENCES book (book_id)
 )

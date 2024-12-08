@@ -1,4 +1,4 @@
-package com.raphael.Reading.Management.application;
+package com.raphael.Reading.Management;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

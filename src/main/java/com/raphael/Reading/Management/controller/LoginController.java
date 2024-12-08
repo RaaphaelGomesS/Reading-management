@@ -8,6 +8,7 @@ import com.raphael.Reading.Management.service.AuthenticationService;
 import com.raphael.Reading.Management.service.TokenService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/")
+@RequestMapping("/login")
 public class LoginController {
 
     private AuthenticationService service;
@@ -35,7 +36,7 @@ public class LoginController {
         return ResponseEntity.ok(readerDTO);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/")
     public ResponseEntity<String> login(@RequestBody LoginRequest request) {
 
         var authDTO = new UsernamePasswordAuthenticationToken(request.username(), request.password());
