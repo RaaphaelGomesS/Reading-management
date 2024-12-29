@@ -2,5 +2,5 @@ package com.raphael.Reading.Management.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record LoginRequest(@NotBlank String username, @NotBlank String password) {
+public record LoginRequestDTO(@NotBlank String username, @NotBlank String password) {
 }

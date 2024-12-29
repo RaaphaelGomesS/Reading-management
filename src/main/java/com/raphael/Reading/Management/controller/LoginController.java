@@ -1,8 +1,8 @@
 package com.raphael.Reading.Management.controller;
 
-import com.raphael.Reading.Management.dto.LoginRequest;
+import com.raphael.Reading.Management.dto.LoginRequestDTO;
 import com.raphael.Reading.Management.dto.ReaderDTO;
-import com.raphael.Reading.Management.dto.ReaderDTORequest;
+import com.raphael.Reading.Management.dto.ReaderRequestDTO;
 import com.raphael.Reading.Management.entity.Reader;
 import com.raphael.Reading.Management.service.AuthenticationService;
 import com.raphael.Reading.Management.service.ReaderService;
@@ -30,7 +30,7 @@ public class LoginController {
     private ReaderService readerService;
 
     @PostMapping("/create")
-    public ResponseEntity<ReaderDTO> createAccount(@RequestBody @Valid ReaderDTORequest request) {
+    public ResponseEntity<ReaderDTO> createAccount(@RequestBody @Valid ReaderRequestDTO request) {
 
         ReaderDTO readerDTO = readerService.createReader(request);
 
@@ -38,7 +38,7 @@ public class LoginController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<String> login(@RequestBody LoginRequestDTO request) {
 
         var authDTO = new UsernamePasswordAuthenticationToken(request.username(), request.password());
 

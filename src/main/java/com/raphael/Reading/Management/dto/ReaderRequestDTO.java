@@ -3,7 +3,7 @@ package com.raphael.Reading.Management.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-public record ReaderDTORequest(String name,
+public record ReaderRequestDTO(String name,
                                @NotBlank(message = "O usuário não pode estar vazio.")
                                String username,
                                @NotBlank(message = "A senha não pode estar vazia.")

@@ -2,7 +2,7 @@ package com.raphael.Reading.Management.service;
 
 import com.raphael.Reading.Management.builder.ReaderBuilder;
 import com.raphael.Reading.Management.dto.ReaderDTO;
-import com.raphael.Reading.Management.dto.ReaderDTORequest;
+import com.raphael.Reading.Management.dto.ReaderRequestDTO;
 import com.raphael.Reading.Management.entity.Reader;
 import com.raphael.Reading.Management.exception.ReaderException;
 import com.raphael.Reading.Management.repository.ReaderRepository;
@@ -22,7 +22,7 @@ public class ReaderService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public ReaderDTO createReader(ReaderDTORequest request) {
+    public ReaderDTO createReader(ReaderRequestDTO request) {
 
         Optional<Reader> optionalReader = readerRepository.findReaderByUsername(request.username());
 
