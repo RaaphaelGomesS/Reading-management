@@ -1,6 +1,6 @@
 package com.raphael.Reading.Management.repository;
 
-import com.raphael.Reading.Management.entity.Annotation;
+import com.raphael.Reading.Management.model.Annotation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

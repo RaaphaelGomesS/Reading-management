@@ -3,7 +3,7 @@ package com.raphael.Reading.Management.controller;
 import com.raphael.Reading.Management.dto.LoginRequestDTO;
 import com.raphael.Reading.Management.dto.ReaderDTO;
 import com.raphael.Reading.Management.dto.ReaderRequestDTO;
-import com.raphael.Reading.Management.entity.Reader;
+import com.raphael.Reading.Management.model.Reader;
 import com.raphael.Reading.Management.service.AuthenticationService;
 import com.raphael.Reading.Management.service.ReaderService;
 import jakarta.validation.Valid;

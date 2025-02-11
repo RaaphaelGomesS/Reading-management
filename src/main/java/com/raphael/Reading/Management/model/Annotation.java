@@ -1,4 +1,4 @@
-package com.raphael.Reading.Management.entity;
+package com.raphael.Reading.Management.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

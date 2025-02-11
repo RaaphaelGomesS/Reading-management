@@ -3,10 +3,10 @@ package com.raphael.Reading.Management.service;
 import com.raphael.Reading.Management.builder.ReaderBuilder;
 import com.raphael.Reading.Management.dto.ReaderDTO;
 import com.raphael.Reading.Management.dto.ReaderRequestDTO;
-import com.raphael.Reading.Management.entity.Reader;
+import com.raphael.Reading.Management.model.Reader;
 import com.raphael.Reading.Management.exception.ReaderException;
 import com.raphael.Reading.Management.repository.ReaderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,13 +14,12 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ReaderService {
 
-    @Autowired
-    private ReaderRepository readerRepository;
+    private final ReaderRepository readerRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public ReaderDTO createReader(ReaderRequestDTO request) {
 

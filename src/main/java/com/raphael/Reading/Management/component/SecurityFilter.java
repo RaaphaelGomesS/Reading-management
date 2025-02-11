@@ -1,6 +1,5 @@
 package com.raphael.Reading.Management.component;
 
-import com.raphael.Reading.Management.repository.ReaderRepository;
 import com.raphael.Reading.Management.service.AuthenticationService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,17 +18,14 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class SecurityFilter extends OncePerRequestFilter {
 
-    private ReaderRepository repository;
-
-    private AuthenticationService service;
+    private final AuthenticationService service;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var tokenJWT = recoveryToken(request);
 
         if (tokenJWT != null) {
-            String subject = service.getSubject(tokenJWT);
-            UserDetails user = repository.findByUsername(subject);
+            UserDetails user = service.getSubject(tokenJWT);
 
             var auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 
