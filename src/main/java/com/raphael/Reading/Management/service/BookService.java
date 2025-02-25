@@ -9,6 +9,7 @@ import com.raphael.Reading.Management.indicator.ReadingStatus;
 import com.raphael.Reading.Management.model.Book;
 import com.raphael.Reading.Management.model.Reader;
 import com.raphael.Reading.Management.repository.BookRepository;
+import com.raphael.Reading.Management.service.validator.OwnerValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,26 @@ public class BookService {
         Book book = BookBuilder.from(requestDTO, reader, ReadingStatus.A_LER);
 
         bookRepository.save(book);
+
+        return BookResponseDTOBuilder.from(book);
+    }
+
+    public BookResponseDTO editBook(BookRequestDTO requestDTO, Reader reader) {
+
+        OwnerValidator.verifyOwner(requestDTO.id(), reader);
+
+        Book book = bookRepository.findById(requestDTO.id())
+                .orElseThrow(() -> new BookException("Book not found!", HttpStatus.NOT_FOUND));
+
+        ReadingStatus status = ReadingStatus.fromText(requestDTO.status());
+
+        if (status == null) {
+            throw new BookException("Status undefined!", HttpStatus.BAD_REQUEST);
+        }
+
+        Book bookAtt = BookBuilder.editFrom(book, requestDTO, status);
+
+        bookRepository.save(bookAtt);
 
         return BookResponseDTOBuilder.from(book);
     }

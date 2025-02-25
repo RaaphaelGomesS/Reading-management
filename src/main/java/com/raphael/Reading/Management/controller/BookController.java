@@ -30,4 +30,12 @@ public class BookController {
 
         return new ResponseEntity<>(bookService.createBook(book, reader), HttpStatus.CREATED);
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<BookResponseDTO> updateBook(@RequestBody BookRequestDTO book, @RequestHeader(name = "Authorization") String token) {
+
+        Reader reader = authenticationService.getSubject(token);
+
+        return new ResponseEntity<>(bookService.editBook(book, reader), HttpStatus.CREATED);
+    }
 }

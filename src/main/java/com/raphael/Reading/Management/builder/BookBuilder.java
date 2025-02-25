@@ -25,4 +25,14 @@ public class BookBuilder {
                 .annotations(new ArrayList<>())
                 .build();
     }
+
+    public static Book editFrom(Book book, BookRequestDTO requestDTO, ReadingStatus status) {
+
+        book.setTitle(requestDTO.title());
+        book.setAuthorName(requestDTO.authorName());
+        book.setTotalPages(requestDTO.totalPages());
+        book.setStatus(status);
+
+        return book;
+    }
 }
